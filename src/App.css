@@ -58,6 +58,12 @@ h1 {
   border: none;
   padding: 0.55rem;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.todo-btn:hover {
+  background: rgb(115, 203, 115);
+  transition: background 0.3s ease-in;
 }
 
 .Todo {
