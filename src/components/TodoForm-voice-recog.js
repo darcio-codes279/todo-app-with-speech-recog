@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import SpeechRecognition, {
 	useSpeechRecognition,
 } from "react-speech-recognition";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
 export const TodoForm = ({ addTodo }) => {
 	const [value, setValue] = useState("");
@@ -40,24 +42,36 @@ export const TodoForm = ({ addTodo }) => {
 	};
 	return (
 		<form onSubmit={handleSubmit} className="TodoForm">
+			<button
+				className={`voice-btn-start ${listening ? "recording" : ""}`}
+				id="start"
+				onClick={SpeechRecognition.startListening}
+			>
+				<FontAwesomeIcon className="voice-icon" icon={faMicrophone} />
+			</button>
 			<input
 				type="text"
-				value={value || finalTranscript}
+				value={value || transcript}
 				onChange={(e) => setValue(e.target.value)}
 				className="todo-input"
-				placeholder="What is the task today?"
+				placeholder="What do you need to get done today?"
 			/>
 			<button type="submit" className="todo-btn">
 				Add Task
 			</button>
 
-			<div>
+			{/* <div>
 				<p>Microphone: {listening ? "ON" : "OFF"}</p>
-				<button onClick={SpeechRecognition.startListening}>Start</button>
-				<button onClick={SpeechRecognition.stopListening}>Stop</button>
-				<button onClick={resetTranscript}>Reset</button>
+
+				<button
+					className="voice-btn-stop"
+					id="stop"
+					onClick={SpeechRecognition.stopListening}
+				>
+					Stop
+				</button>
 				<p>{transcript}</p>
-			</div>
+			</div> */}
 		</form>
 	);
 };
