@@ -43,7 +43,7 @@ export const TodoForm = ({ addTodo }) => {
 	return (
 		<form onSubmit={handleSubmit} className="TodoForm">
 			<button
-				className={`voice-btn-start ${listening ? "recording" : ""}`}
+				className={`voice-btn-start ${listening ? "recording" : "noRecording"}`}
 				id="start"
 				onClick={SpeechRecognition.startListening}
 			>
@@ -59,19 +59,6 @@ export const TodoForm = ({ addTodo }) => {
 			<button type="submit" className="todo-btn">
 				Add Task
 			</button>
-
-			{/* <div>
-				<p>Microphone: {listening ? "ON" : "OFF"}</p>
-
-				<button
-					className="voice-btn-stop"
-					id="stop"
-					onClick={SpeechRecognition.stopListening}
-				>
-					Stop
-				</button>
-				<p>{transcript}</p>
-			</div> */}
 		</form>
 	);
 };
