@@ -46,7 +46,11 @@ export const TodoForm = ({ addTodo }) => {
 			<button
 				className={`voice-btn-start ${listening ? "recording" : "noRecording"}`}
 				id="start"
-				onClick={SpeechRecognition.startListening}
+				onClick={
+					listening
+						? SpeechRecognition.stopListening
+						: SpeechRecognition.startListening
+				}
 			>
 				<FontAwesomeIcon className="voice-icon" icon={faMicrophone} />
 			</button>
