@@ -9,6 +9,9 @@ export const TodoWrapper = () => {
 		const data = JSON.parse(localStorage.getItem("todos"));
 		return data !== null ? data : [];
 	});
+	useEffect(() => {
+		localStorage.setItem("todos", JSON.stringify(todos));
+	}, [todos]);
 
 	const addTodo = (todo) => {
 		setTodos([
@@ -16,10 +19,6 @@ export const TodoWrapper = () => {
 			{ id: uuidv4(), task: todo, completed: false, isEditing: false },
 		]);
 	};
-
-	useEffect(() => {
-		localStorage.setItem("todos", JSON.stringify(todos));
-	}, [todos]);
 
 	const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
 
