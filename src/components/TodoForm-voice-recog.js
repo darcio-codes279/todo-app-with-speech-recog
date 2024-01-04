@@ -35,11 +35,12 @@ export const TodoForm = ({ addTodo }) => {
 			resetTranscript();
 		}
 
-		if (finalTranscript == "" && value !== "") {
+		if (finalTranscript === "" && value !== "") {
 			addTodo(value);
 			setValue("");
 		}
 	};
+
 	return (
 		<form onSubmit={handleSubmit} className="TodoForm">
 			<button

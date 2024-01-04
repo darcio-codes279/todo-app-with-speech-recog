@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm-voice-recog";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
-	const [todos, setTodos] = useState([]);
+	const [todos, setTodos] = useState(() => {
+		const data = JSON.parse(localStorage.getItem("todos"));
+		return data !== null ? data : [];
+	});
 
 	const addTodo = (todo) => {
 		setTodos([
@@ -13,6 +16,10 @@ export const TodoWrapper = () => {
 			{ id: uuidv4(), task: todo, completed: false, isEditing: false },
 		]);
 	};
+
+	useEffect(() => {
+		localStorage.setItem("todos", JSON.stringify(todos));
+	}, [todos]);
 
 	const deleteTodo = (id) => setTodos(todos.filter((todo) => todo.id !== id));
 
