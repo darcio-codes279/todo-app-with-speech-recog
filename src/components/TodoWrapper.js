@@ -5,10 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
-	const [todos, setTodos] = useState(() => {
-		const data = JSON.parse(localStorage.getItem("todos"));
-		return data !== null ? data : [];
-	});
+	const data = JSON.parse(localStorage.getItem("todos"));
+	const [todos, setTodos] = useState(data);
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
