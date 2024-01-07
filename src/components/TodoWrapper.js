@@ -6,7 +6,7 @@ import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
 	const data = JSON.parse(localStorage.getItem("todos"));
-	const [todos, setTodos] = useState(data);
+	const [todos, setTodos] = useState(data || []);
 	useEffect(() => {
 		localStorage.setItem("todos", JSON.stringify(todos));
 	}, [todos]);
